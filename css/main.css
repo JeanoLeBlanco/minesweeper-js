@@ -19,8 +19,8 @@ html, body {
 .window {
   background: #c0c0c0;
   border: 1px solid #dfdfdf;
-  border-right-color: #000;
-  border-bottom-color: #000;
+  border-right-color: #3c3c3c;
+  border-bottom-color: #3C3C3C;
   display: inline-block;
 }
 
@@ -33,8 +33,7 @@ html, body {
 .window .header {
   background-image: linear-gradient(to right, #00008b, #0083d7);
   color: white;
-  padding: 3px;
-  padding-bottom: 0;
+  padding: 3px 3px 0;
 }
 
 .header .title {
@@ -55,35 +54,73 @@ html, body {
   display: inline-block;
   vertical-align: top;
   line-height: 20px;
-  width: 20px;
-  height: 20px;
-  background: #c0c0c0;
-  border: 1px solid #dfdfdf;
-  border-right-color: #000;
-  border-bottom-color: #000;
-  transition: background-color 200ms;
+  width: 16px;
+  height: 16px;
+  background: url("../img/Minesweepertiles-windows9598ME.png") no-repeat 0 0;
 }
 
 .cell:hover {
   background-color: #b2b2b2;
 }
 
-.cell > .inner {
-  vertical-align: top;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #fff;
-  border-right-color: #808080;
-  border-bottom-color: #808080;
-  display: inline-block;
+.pressed-0 {
+  background-position: 0 -240px;
 }
 
-.cell.pressed {
-  border: 1px dotted #808080;
+.pressed-1 {
+  background-position: 0 -224px;
 }
 
-.cell.pressed > .inner {
-  display: none;
+.pressed-2 {
+  background-position: 0 -208px;
+}
+
+.pressed-3 {
+  background-position: 0 -192px;
+}
+
+.pressed-4 {
+  background-position: 0 -176px;
+}
+
+.pressed-5 {
+  background-position: 0 -160px;
+}
+
+.pressed-6 {
+  background-position: 0 -144px;
+}
+
+.pressed-7 {
+  background-position: 0 -128px;
+}
+
+.pressed-8 {
+  background-position: 0 -112px;
+}
+
+.pressed-question {
+  background-position: 0 -96px;
+}
+
+.pressed-bomb {
+  background-position: 0 -80px;
+}
+
+.pressed-cross {
+  background-position: 0 -64px;
+}
+
+.pressed-bomb-red {
+  background-position: 0 -48px;
+}
+
+.question {
+  background-position: 0 -32px;
+}
+
+.flag {
+  background-position: 0 -16px;
 }
 
 .button {
