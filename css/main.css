@@ -1,0 +1,109 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+#fieldContainer {
+  display: inline-block;
+}
+
+.window {
+  background: #c0c0c0;
+  border: 1px solid #dfdfdf;
+  border-right-color: #000;
+  border-bottom-color: #000;
+  display: inline-block;
+}
+
+.window .inner {
+  border: 1px solid #fff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+.window .header {
+  background-image: linear-gradient(to right, #00008b, #0083d7);
+  color: white;
+  padding: 3px;
+  padding-bottom: 0;
+}
+
+.header .title {
+  vertical-align: top;
+  padding-top: 1px;
+  display: inline-block;
+}
+
+.header .icon {
+  background: url("../img/Minewsweeper32icon-windows9598ME.png") no-repeat;
+  background-size: 15px 15px;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}
+
+.cell {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  background: #c0c0c0;
+  border: 1px solid #dfdfdf;
+  border-right-color: #000;
+  border-bottom-color: #000;
+  transition: background-color 200ms;
+}
+
+.cell:hover {
+  background-color: #b2b2b2;
+}
+
+.cell > .inner {
+  vertical-align: top;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #fff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+  display: inline-block;
+}
+
+.cell.pressed {
+  border: 1px dotted #808080;
+}
+
+.cell.pressed > .inner {
+  display: none;
+}
+
+.button {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 20px;
+  background: #c0c0c0;
+  border: 1px solid #dfdfdf;
+  border-right-color: #000;
+  border-bottom-color: #000;
+  transition: background-color 200ms;
+}
+
+.button .inner {
+  width: 13px;
+  height: 13px;
+}
+
+.header .button {
+  float: right;
+}
