@@ -34,7 +34,7 @@ body {
   border-bottom-color: #303030;
   display: inline-block;
   position: absolute;
-  top: 50px;
+  top: 10px;
   min-width: 156px;
   min-height: 233px;
 }
@@ -117,8 +117,16 @@ body {
 }
 
 .smiley {
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 16px;
+  min-width: 20px;
+  min-height: 20px;
+  position: relative;
+  top: 0;
+}
+
+.smiley .inner {
+  padding-top: 1px;
 }
 
 .cell {
