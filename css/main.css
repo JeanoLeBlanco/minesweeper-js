@@ -7,30 +7,50 @@ html {
 }
 
 html, body {
-  font-family: sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 12px;
   line-height: 12px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #007f7e;
 }
 
 #fieldContainer {
   display: inline-block;
 }
 
-.window {
+.panel {
   background: #c0c0c0;
-  border: 1px solid #dfdfdf;
-  border-right-color: #3c3c3c;
-  border-bottom-color: #3C3C3C;
+  border: 1px solid #ffffff;
+  border-right-color: #303030;
+  border-bottom-color: #303030;
   display: inline-block;
+  position: absolute;
+  top: 50px;
+  min-width: 156px;
+  min-height: 233px;
 }
 
-.window .inner {
+.panel > .inner {
   border: 1px solid #fff;
   border-right-color: #808080;
   border-bottom-color: #808080;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.window .header {
+.panel .header {
   background-image: linear-gradient(to right, #00008b, #0083d7);
   color: white;
   padding: 3px 3px 0;
@@ -50,6 +70,57 @@ html, body {
   display: inline-block;
 }
 
+.menu {
+
+}
+
+.menu .item {
+  padding: 5px;
+  display: inline-block;
+}
+
+.raised-content {
+  border: 3px solid #fff;
+  border-right-color: #8f8f8f;
+  border-bottom-color: #8f8f8f;
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  top: 42px;
+  padding: 5px;
+}
+
+.sunken-content {
+  border: 2px solid #8f8f8f;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.sunken-content:last-of-type {
+  margin-top: 5px;
+}
+
+.score {
+  background-color: #303030;
+  width: 40px;
+  height: 20px;
+  color: red;
+  padding: 2px;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: right;
+}
+
+.smiley {
+  font-size: 20px;
+  line-height: 20px;
+}
+
 .cell {
   display: inline-block;
   vertical-align: top;
@@ -57,10 +128,6 @@ html, body {
   width: 16px;
   height: 16px;
   background: url("../img/Minesweepertiles-windows9598ME.png") no-repeat 0 0;
-}
-
-.cell:hover {
-  background-color: #b2b2b2;
 }
 
 .pressed-0 {
@@ -124,19 +191,18 @@ html, body {
 }
 
 .button {
+  min-width: 15px;
+  min-height: 15px;
+  position: static;
   width: 15px;
   height: 15px;
   display: inline-block;
   vertical-align: top;
   line-height: 20px;
-  background: #c0c0c0;
-  border: 1px solid #dfdfdf;
-  border-right-color: #000;
-  border-bottom-color: #000;
-  transition: background-color 200ms;
 }
 
 .button .inner {
+  position: static;
   width: 13px;
   height: 13px;
 }

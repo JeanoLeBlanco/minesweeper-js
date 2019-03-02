@@ -6,30 +6,54 @@
   <title>MineSweeper</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
   <link rel="icon" href="img/Minewsweeper32icon-windows9598ME.png">
   <link rel="stylesheet" href="css/main.css">
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
-<div class="window">
-  <div class="header">
-    <div class="icon"></div>
-    <span class="title">MineSweeper</span>
-    <div class="button">
-      <div class="inner">
-        <div class="cross"></div>
+<div id="window" class="panel">
+  <div class="inner">
+    <div class="header">
+      <div class="icon"></div>
+      <span class="title">MineSweeper</span>
+      <div class="panel button">
+        <div class="inner">
+          <div class="cross"></div>
+        </div>
+      </div>
+      <span style="float: right"> &nbsp; </span>
+      <div class="panel button">
+        <div class="inner"></div>
+      </div>
+      <div class="panel button">
+        <div class="inner"></div>
       </div>
     </div>
-    <span style="float: right"> &nbsp; </span>
-    <div class="cell button">
-      <div class="inner"></div>
+    <div class="menu">
+      <span class="item">
+        <span style="text-decoration: underline">G</span>ame
+      </span>
+      <span class="item">
+        <span style="text-decoration: underline">H</span>elp
+      </span>
     </div>
-    <div class="cell button">
-      <div class="inner"></div>
+    <div class="raised-content">
+      <div class="sunken-content">
+        <div class="score">
+          071
+        </div>
+        <div class="smiley">😄</div>
+        <div class="score">
+          009
+        </div>
+      </div>
+      <div class="sunken-content" style="padding: 0">
+        <div id="fieldContainer"></div>
+      </div>
     </div>
   </div>
-  <div id="fieldContainer"></div>
 </div>
 <script src="js/main.js"></script>
 </body>

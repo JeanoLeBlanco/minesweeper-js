@@ -23,5 +23,10 @@
     console.log(i, j);
   }
 
-  makeField(20, 20);
+  makeField(8, 8);
+  var mainWindow = document.getElementById("window");
+  var windowStyles = window.getComputedStyle(mainWindow);
+  var width = parseInt(windowStyles.width, 10);
+  var height = parseInt(windowStyles.height, 10);
+  mainWindow.style.left = "calc(50% - " + width / 2 + "px)";
 })();
