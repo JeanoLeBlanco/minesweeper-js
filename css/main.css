@@ -4,6 +4,7 @@ html {
 
 *, *:before, *:after {
   box-sizing: inherit;
+  user-select: none;
 }
 
 html, body {
@@ -48,6 +49,18 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
+}
+
+.panel.down {
+  border: 1px solid #303030;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.panel.down > .inner {
+  border: 1px solid #808080;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
 }
 
 .panel .header {
@@ -127,6 +140,7 @@ body {
 
 .smiley .inner {
   padding-top: 1px;
+  cursor: default;
 }
 
 .cell {
