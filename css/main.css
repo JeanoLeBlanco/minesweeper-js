@@ -146,10 +146,13 @@ body {
 .cell {
   display: inline-block;
   vertical-align: top;
-  line-height: 20px;
   width: 16px;
   height: 16px;
   background: url("../img/Minesweepertiles-windows9598ME.png") no-repeat 0 0;
+  line-height: 15px;
+  padding-right: 2px;
+  font-size: 10px;
+  text-align: right;
 }
 
 .pressed-0 {
@@ -227,8 +230,40 @@ body {
   position: static;
   width: 13px;
   height: 13px;
+  font-size: 15px;
+  line-height: 10px;
+  text-align: center;
+  color: #222222;
 }
 
 .header .button {
   float: right;
+}
+
+.minimize {
+  display: inline-block;
+  width: 8px;
+  border-bottom: solid 2px #222222;
+}
+
+.maximize {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border: solid 1px #737373;
+  border-top-width: 2px;
+  border-bottom-color: #dfdfdf;
+  border-right-color: #dfdfdf;
+}
+
+.maximize-inner {
+  display: inline-block;
+  width: 7px;
+  height: 6px;
+  border-top: solid 1px #dfdfdf;
+  border-left: solid 1px #dfdfdf;
+}
+
+.close {
+  font-weight: bolder;
 }
