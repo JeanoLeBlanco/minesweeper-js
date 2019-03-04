@@ -17,6 +17,11 @@
     this.numCols = numCols;
     this.numBombs = bombs;
     var i, j, k, tmpRow;
+    this.timer = null;
+    this.bombCounterElem = document.getElementById("bombs");
+    this.timerElem = document.getElementById("time");
+
+    this.bombCounterElem.innerText = this.numBombs;
 
     // 1. Create the field with empty cells
     for (i = 0; i < numRows; i++) {
@@ -93,31 +98,94 @@
       }.bind(this)
     );
 
-    fieldContainer.addEventListener("contextmenu", function(ev) {
-      ev.preventDefault();
-      var cell = ev.target;
-      console.log("right click on", cell.dataset.i, cell.dataset.j);
-    });
+    fieldContainer.addEventListener(
+      "contextmenu",
+      function(ev) {
+        ev.preventDefault();
+        var cell = ev.target;
+        this.handleRightClick(cell);
+      }.bind(this)
+    );
+  };
+
+  MineSweeper.prototype.setupTimer = function() {
+    if (!this.timer) {
+      this.timer = setInterval(
+        function() {
+          var val = parseInt(this.timerElem.innerText);
+          val++;
+          this.timerElem.innerText = String(val);
+        }.bind(this),
+        1000
+      );
+    }
+  };
+
+  MineSweeper.prototype.handleRightClick = function(cell) {
+    this.setupTimer();
+    if (cell.dataset.dead !== "true") {
+      var bombCount = Number(this.bombCounterElem.innerText);
+      if (cell.className.indexOf("flag") === -1) {
+        cell.className = "cell flag";
+        bombCount--;
+      } else {
+        cell.className = "cell";
+        bombCount++;
+      }
+      this.bombCounterElem.innerText = String(bombCount);
+    }
   };
 
   MineSweeper.prototype.handleCellClick = function(cell) {
+    this.setupTimer();
     var i, j;
     var field = this.field;
-    if (cell.className.indexOf("cell") !== -1) {
-      i = parseInt(cell.id.split("-")[0], 10);
-      j = parseInt(cell.id.split("-")[1], 10);
+    if (cell.dataset.dead !== "true") {
+      if (cell.className.indexOf("cell") !== -1) {
+        cell.dataset.dead = "true"; // disables the on click handlers
+        i = parseInt(cell.id.split("-")[0], 10);
+        j = parseInt(cell.id.split("-")[1], 10);
 
-      if (field[i][j] === this.BOMB) {
-        cell.className = "cell pressed-bomb";
-      } else if (field[i][j] >= 0) {
-        var bombCount = this.getBombCount(i, j);
-        cell.className = "cell pressed-" + bombCount;
-        if (bombCount === 0) {
-          // reveal the connected empty cells
-          this.revealConnectedCells(i, j);
+        if (field[i][j] === this.BOMB) {
+          cell.className = "cell pressed-bomb";
+          this.gameOver();
+        } else if (field[i][j] >= 0) {
+          var bombCount = this.getBombCount(i, j);
+          cell.className = "cell pressed-" + bombCount;
+          if (bombCount === 0) {
+            // reveal the connected empty cells
+            this.revealConnectedCells(i, j);
+          }
+        }
+
+        this.field[i][j] = this.REVEALED;
+        this.checkScore();
+      }
+    }
+  };
+
+  MineSweeper.prototype.checkScore = function() {
+    var revealedCount = 0;
+    for (var i = 0; i < this.numRows; i++) {
+      for (var j = 0; j < this.numCols; j++) {
+        if (this.field[i][j] === this.REVEALED) {
+          revealedCount++;
         }
       }
     }
+    if (revealedCount === this.numRows * this.numCols - this.numBombs) {
+      this.userWins();
+    }
+  };
+
+  MineSweeper.prototype.gameOver = function() {
+    alert("boo");
+    clearInterval(this.timer);
+  };
+
+  MineSweeper.prototype.userWins = function() {
+    alert("you win");
+    clearInterval(this.timer);
   };
 
   /**
@@ -125,6 +193,7 @@
    */
   MineSweeper.prototype.revealConnectedCells = function(givenI, givenJ) {
     var toCheck = []; // we'll use the array as a queue
+    var toReveal = [];
     var checkingCell, surroundingCell;
     var neighbors;
     this.field[givenI][givenJ] = this.REVEALED;
@@ -135,14 +204,30 @@
       neighbors = this.getSurroundingCells(checkingCell[0], checkingCell[1]);
       for (var i = 0; i < neighbors.length; i++) {
         surroundingCell = neighbors[i];
+
         if (this.field[surroundingCell[0]][surroundingCell[1]] === this.EMPTY) {
           this.field[surroundingCell[0]][surroundingCell[1]] = this.REVEALED;
           toCheck.push(surroundingCell);
           document.getElementById(
             "" + surroundingCell[0] + "-" + surroundingCell[1]
           ).className = "cell pressed-0";
+
+          toReveal = toReveal.concat(
+            this.getSurroundingCells(surroundingCell[0], surroundingCell[1])
+          );
+        } else {
+          toReveal = toReveal.concat([
+            [surroundingCell[0], surroundingCell[1]]
+          ]);
         }
       }
+    }
+
+    for (var j = 0; j < toReveal.length; j++) {
+      var cell = document.getElementById(
+        "" + toReveal[j][0] + "-" + toReveal[j][1]
+      );
+      this.handleCellClick(cell);
     }
   };
 
@@ -193,12 +278,11 @@
 
   // --- End of MineSweeper class definition ---
 
-  var numRows = 8;
+  var numRows = 4;
   var numCols = 8;
-  var numBombs = 10;
+  var numBombs = 5;
   var game = new MineSweeper(numBombs, numRows, numCols);
   game.renderField();
-  console.log(game.field);
 
   var smileyButton = document.getElementById("smiley-button");
   smileyButton.addEventListener("mousedown", function(ev) {

@@ -37,7 +37,7 @@ body {
   position: absolute;
   top: 10px;
   min-width: 156px;
-  min-height: 233px;
+  min-height: 100px;
 }
 
 .panel > .inner {
