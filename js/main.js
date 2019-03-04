@@ -1,5 +1,5 @@
 (function() {
-  var DEBUG = true;
+  var DEBUG = false;
   /**
    * MineSweeper game constructor. Creates a field with defined number of bombs in random positions.
    *
@@ -278,9 +278,9 @@
 
   // --- End of MineSweeper class definition ---
 
-  var numRows = 4;
+  var numRows = 8;
   var numCols = 8;
-  var numBombs = 5;
+  var numBombs = 10;
   var game = new MineSweeper(numBombs, numRows, numCols);
   game.renderField();
 
