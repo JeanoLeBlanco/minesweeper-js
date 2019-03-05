@@ -1,69 +1,60 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Minesweeper</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="img/Minewsweeper32icon-windows9598ME.png" />
+    <link rel="stylesheet" href="css/main.css" />
+    <meta name="theme-color" content="#fafafa" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Minesweeper</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-  <link rel="icon" href="img/Minewsweeper32icon-windows9598ME.png">
-  <link rel="stylesheet" href="css/main.css">
-  <meta name="theme-color" content="#fafafa">
-</head>
-
-<body>
-<div id="window" class="panel">
-  <div class="inner">
-    <div class="header">
-      <div class="icon"></div>
-      <span class="title">Minesweeper</span>
-      <div class="panel button">
-        <div class="inner">
-          <div class="close">&times;</div>
+  <body>
+    <div id="window" class="panel">
+      <div class="inner">
+        <div class="header">
+          <div class="icon"></div>
+          <span class="title">Minesweeper</span>
+          <div class="panel button">
+            <div class="inner"><div class="close">&times;</div></div>
+          </div>
+          <span style="float: right"> &nbsp; </span>
+          <div class="panel button">
+            <div class="inner" style="line-height: 0; padding-top: 1px">
+              <div class="maximize"><div class="maximize-inner"></div></div>
+            </div>
+          </div>
+          <div class="panel button">
+            <div class="inner"><div class="minimize"></div></div>
+          </div>
         </div>
-      </div>
-      <span style="float: right"> &nbsp; </span>
-      <div class="panel button">
-        <div class="inner" style="line-height: 0; padding-top: 1px">
-          <div class="maximize">
-            <div class="maximize-inner"></div>
+        <div class="menu">
+          <span class="item">
+            <span style="text-decoration: underline">G</span>ame
+          </span>
+          <span class="item">
+            <span style="text-decoration: underline">H</span>elp
+          </span>
+        </div>
+        <div class="raised-content">
+          <div class="sunken-content">
+            <div class="score" id="bombs"></div>
+            <div id="smiley-button" class="panel smiley">
+              <div class="inner">😄</div>
+            </div>
+            <div class="score" id="time">0</div>
+          </div>
+          <div class="sunken-content" style="padding: 0">
+            <div id="fieldContainer"></div>
           </div>
         </div>
       </div>
-      <div class="panel button">
-        <div class="inner">
-          <div class="minimize"></div>
-        </div>
-      </div>
     </div>
-    <div class="menu">
-      <span class="item">
-        <span style="text-decoration: underline">G</span>ame
-      </span>
-      <span class="item">
-        <span style="text-decoration: underline">H</span>elp
-      </span>
-    </div>
-    <div class="raised-content">
-      <div class="sunken-content">
-        <div class="score" id="bombs">
-
-        </div>
-        <div id="smiley-button" class="panel smiley">
-          <div class="inner">😄</div>
-        </div>
-        <div class="score" id="time">
-          0
-        </div>
-      </div>
-      <div class="sunken-content" style="padding: 0">
-        <div id="fieldContainer"></div>
-      </div>
-    </div>
-  </div>
-</div>
-<script src="js/main.js"></script>
-</body>
-
+    <script src="js/main.js"></script>
+  </body>
 </html>
