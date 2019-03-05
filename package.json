@@ -1,0 +1,19 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "description": "Classic windows 98 Minesweeper game implemented un vanilla JS",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugotox/minesweeper-js.git"
+  },
+  "author": "hugotox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hugotox/minesweeper-js/issues"
+  },
+  "homepage": "https://github.com/hugotox/minesweeper-js#readme"
+}
