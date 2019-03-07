@@ -1,5 +1,12 @@
 (function() {
   var DEBUG = false;
+
+  var constants = {
+    EMPTY: 0,
+    BOMB: -1,
+    REVEALED: -2
+  };
+
   /**
    * MineSweeper game constructor. Creates a field with defined number of bombs in random positions.
    *
@@ -9,25 +16,21 @@
    * @constructor
    */
   function MineSweeper(bombs, numRows, numCols) {
-    this.BOMB = -1;
-    this.EMPTY = 0;
-    this.REVEALED = -2;
     this.field = [];
     this.numRows = numRows;
     this.numCols = numCols;
     this.numBombs = bombs;
-    var i, j, k, tmpRow;
     this.timer = null;
     this.bombCounterElem = document.getElementById("bombs");
     this.timerElem = document.getElementById("time");
-
     this.bombCounterElem.innerText = this.numBombs;
+    var i, j, k, tmpRow;
 
     // 1. Create the field with empty cells
     for (i = 0; i < numRows; i++) {
       tmpRow = [];
       for (j = 0; j < numCols; j++) {
-        tmpRow.push(this.EMPTY);
+        tmpRow.push(constants.EMPTY);
       }
       this.field.push(tmpRow);
     }
@@ -37,15 +40,15 @@
     while (i < this.numBombs) {
       var rowi = this.getRandomInt(this.numRows);
       var colj = this.getRandomInt(this.numCols);
-      if (this.field[rowi][colj] !== this.BOMB) {
+      if (this.field[rowi][colj] !== constants.BOMB) {
         i++;
-        this.field[rowi][colj] = this.BOMB;
+        this.field[rowi][colj] = constants.BOMB;
 
         // 3. Add +1 to surrounding cells that are not bombs:
         var neighbors = this.getSurroundingCells(rowi, colj);
         for (k = 0; k < neighbors.length; k++) {
           var n = neighbors[k];
-          if (this.field[n[0]][n[1]] !== this.BOMB) {
+          if (this.field[n[0]][n[1]] !== constants.BOMB) {
             this.field[n[0]][n[1]] += 1;
           }
         }
@@ -148,7 +151,7 @@
 
         var bombCount = field[i][j];
 
-        if (bombCount === this.BOMB) {
+        if (bombCount === constants.BOMB) {
           cell.className = "cell pressed-bomb";
           this.gameOver();
         } else if (bombCount >= 0) {
@@ -159,7 +162,7 @@
           }
         }
 
-        this.field[i][j] = this.REVEALED;
+        this.field[i][j] = constants.REVEALED;
         this.checkScore();
       }
     }
@@ -169,7 +172,7 @@
     var revealedCount = 0;
     for (var i = 0; i < this.numRows; i++) {
       for (var j = 0; j < this.numCols; j++) {
-        if (this.field[i][j] === this.REVEALED) {
+        if (this.field[i][j] === constants.REVEALED) {
           revealedCount++;
         }
       }
@@ -190,14 +193,14 @@
   };
 
   /**
-   * Loops through the connected cells and updates the value to this.REVEALED when they're empty
+   * Loops through the connected cells and updates the value to constants.REVEALED when they're empty
    */
   MineSweeper.prototype.revealConnectedCells = function(givenI, givenJ) {
     var toCheck = []; // we'll use the array as a queue
     var toReveal = [];
     var checkingCell, surroundingCell;
     var neighbors;
-    this.field[givenI][givenJ] = this.REVEALED;
+    this.field[givenI][givenJ] = constants.REVEALED;
     toCheck.push([givenI, givenJ]);
 
     while (toCheck.length > 0) {
@@ -206,8 +209,11 @@
       for (var i = 0; i < neighbors.length; i++) {
         surroundingCell = neighbors[i];
 
-        if (this.field[surroundingCell[0]][surroundingCell[1]] === this.EMPTY) {
-          this.field[surroundingCell[0]][surroundingCell[1]] = this.REVEALED;
+        if (
+          this.field[surroundingCell[0]][surroundingCell[1]] === constants.EMPTY
+        ) {
+          this.field[surroundingCell[0]][surroundingCell[1]] =
+            constants.REVEALED;
           toCheck.push(surroundingCell);
           document.getElementById(
             "" + surroundingCell[0] + "-" + surroundingCell[1]
