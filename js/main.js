@@ -146,11 +146,12 @@
         i = parseInt(cell.id.split("-")[0], 10);
         j = parseInt(cell.id.split("-")[1], 10);
 
-        if (field[i][j] === this.BOMB) {
+        var bombCount = field[i][j];
+
+        if (bombCount === this.BOMB) {
           cell.className = "cell pressed-bomb";
           this.gameOver();
-        } else if (field[i][j] >= 0) {
-          var bombCount = this.getBombCount(i, j);
+        } else if (bombCount >= 0) {
           cell.className = "cell pressed-" + bombCount;
           if (bombCount === 0) {
             // reveal the connected empty cells
@@ -259,21 +260,6 @@
       }
     }
     return neighbors;
-  };
-
-  /**
-   * Returns the bomb count fot the given cell
-   */
-  MineSweeper.prototype.getBombCount = function(i, j) {
-    var neighbors = this.getSurroundingCells(i, j);
-    var count = 0;
-    for (var k = 0; k < neighbors.length; k++) {
-      var neig = neighbors[k];
-      if (this.field[neig[0]][neig[1]] === this.BOMB) {
-        count++;
-      }
-    }
-    return count;
   };
 
   // --- End of MineSweeper class definition ---
