@@ -21,7 +21,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: #007f7e;
+  background-color: #55aaaa;
 }
 
 #fieldContainer {
@@ -118,29 +118,71 @@ body {
 }
 
 .score {
-  background-color: #303030;
-  width: 40px;
-  height: 20px;
-  color: red;
-  padding: 2px;
-  font-family: monospace;
-  font-size: 16px;
-  line-height: 16px;
-  text-align: right;
+  /*background-color: #000000;*/
+  width: 39px;
+  height: 23px;
+  padding: 0;
+}
+
+.num {
+  background-image: url("../img/numbers.png");
+  background-repeat: no-repeat;
+  width: 13px;
+  height: 23px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.num0 {
+  background-position: -126px 0;
+}
+.num1 {
+  background-position: -0 0;
+}
+.num2 {
+  background-position: -14px 0;
+}
+.num3 {
+  background-position: -28px 0;
+}
+.num4 {
+  background-position: -42px 0;
+}
+.num5 {
+  background-position: -56px 0;
+}
+.num6 {
+  background-position: -70px 0;
+}
+.num7 {
+  background-position: -84px 0;
+}
+.num8 {
+  background-position: -98px 0;
+}
+.num9 {
+  background-position: -112px 0;
 }
 
 .smiley {
   font-size: 16px;
   line-height: 16px;
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 23px;
+  min-height: 23px;
   position: relative;
   top: 0;
 }
 
 .smiley .inner {
-  padding-top: 1px;
   cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smiley .inner .icon {
+  width: 15px;
 }
 
 .cell {

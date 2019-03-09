@@ -138,7 +138,7 @@ var MSView = function(numRows, numCols, bombs) {
   this.smileyButton = document.getElementById("smiley-button");
   this.colWidth = 16;
   this.paddingsW = 28;
-  this.paddingsH = 105;
+  this.paddingsH = 107;
   this.eventsSetUp = false;
 
   this.updateBombCounter(this.numBombs);
@@ -175,6 +175,9 @@ MSView.prototype.renderField = function(field) {
       fieldContainer.appendChild(cell);
     }
   }
+
+  var icon = this.smileyButton.getElementsByClassName("icon")[0];
+  icon.innerText = "😄";
 };
 
 MSView.prototype.setupEventListeners = function(config) {
@@ -235,11 +238,42 @@ MSView.prototype.updateRevealed = function(field) {
 };
 
 MSView.prototype.updateTime = function(value) {
-  this.timerElem.innerText = value;
+  var values = String(value).split("");
+  var digits = this.timerElem.getElementsByClassName("num");
+  if (values.length === 1) {
+    digits[0].className = "num p0 num0";
+    digits[1].className = "num p1 num0";
+    digits[2].className = "num p2 num" + values[0];
+  } else if (values.length === 2) {
+    digits[0].className = "num p0 num0";
+    digits[1].className = "num p1 num" + values[0];
+    digits[2].className = "num p2 num" + values[1];
+  } else {
+    digits[0].className = "num p0 num" + values[0];
+    digits[1].className = "num p1 num" + values[1];
+    digits[2].className = "num p2 num" + values[2];
+  }
 };
 
 MSView.prototype.updateBombCounter = function(value) {
-  this.bombCounterElem.innerText = value;
+  if (value >= 0) {
+    // TODO display negative number
+    var values = String(value).split("");
+    var digits = this.bombCounterElem.getElementsByClassName("num");
+    if (values.length === 1) {
+      digits[0].className = "num p0 num0";
+      digits[1].className = "num p1 num0";
+      digits[2].className = "num p2 num" + values[0];
+    } else if (values.length === 2) {
+      digits[0].className = "num p0 num0";
+      digits[1].className = "num p1 num" + values[0];
+      digits[2].className = "num p2 num" + values[1];
+    } else {
+      digits[0].className = "num p0 num" + values[0];
+      digits[1].className = "num p1 num" + values[1];
+      digits[2].className = "num p2 num" + values[2];
+    }
+  }
 };
 
 MSView.prototype.getRevealedCount = function(field) {
@@ -267,6 +301,11 @@ MSView.prototype.revealField = function(field, bombCell) {
   bombCell.className = "cell pressed-bomb-red";
 };
 
+MSView.prototype.gameOver = function() {
+  var icon = this.smileyButton.getElementsByClassName("icon")[0];
+  icon.innerText = "😭";
+};
+
 //--- END VIEW
 
 /**
@@ -280,6 +319,7 @@ var MSController = function(bombs, numRows, numCols) {
   this.numRows = numRows;
   this.numCols = numCols;
   this.numBombs = bombs;
+  this.numFlags = 0;
   this.view = new MSView(numRows, numCols, bombs);
   this.handleCellClick = this.handleCellClick.bind(this);
   this.handleRightClick = this.handleRightClick.bind(this);
@@ -306,6 +346,7 @@ MSController.prototype.newGame = function() {
   clearInterval(this.timer);
   this.timer = null;
   this.gameStopped = false;
+  this.numFlags = 0;
 };
 
 MSController.prototype.setupTimer = function() {
@@ -356,14 +397,14 @@ MSController.prototype.handleRightClick = function(cell) {
   if (!this.gameStopped) {
     this.setupTimer();
     if (cell.dataset.dead !== "true") {
-      var bombCount = Number(this.view.bombCounterElem.innerText);
       if (cell.className.indexOf("flag") === -1) {
         cell.className = "cell flag";
-        bombCount--;
+        this.numFlags++;
       } else {
         cell.className = "cell";
-        bombCount++;
+        this.numFlags--;
       }
+      var bombCount = this.numBombs - this.numFlags;
       this.view.updateBombCounter(bombCount);
     }
   }
@@ -387,6 +428,7 @@ MSController.prototype.userWins = function() {
 
 MSController.prototype.gameOver = function() {
   console.log("hit a bomb");
+  this.view.gameOver();
   this.stopGame();
 };
 
