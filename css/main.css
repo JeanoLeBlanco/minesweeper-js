@@ -166,7 +166,7 @@ body {
 }
 
 .smiley {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 16px;
   min-width: 23px;
   min-height: 23px;
@@ -182,7 +182,7 @@ body {
 }
 
 .smiley .inner .icon {
-  width: 15px;
+  /*width: 15px;*/
 }
 
 .cell {
