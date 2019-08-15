@@ -1,6 +1,6 @@
 "use strict";
 
-var DEBUG = false;
+var DEBUG = true;
 
 /**
  * Minesweeper model constructor
