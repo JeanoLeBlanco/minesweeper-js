@@ -362,3 +362,9 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.dropdown-content > a.down{
+  background: #e7e7e7;
+  border: 1px solid #303030;
+  border-right-color: #8f8f8f;
+  border-bottom-color: #8f8f8f;
+}

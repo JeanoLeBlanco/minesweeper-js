@@ -125,6 +125,7 @@ class MSView {
     this.fieldContainer = document.getElementById("fieldContainer");
     this.mainWindow = document.getElementById("window");
     this.smileyButton = document.getElementById("smiley-button");
+    this.newGameMenu = document.getElementById("newGame-menu");
     this.colWidth = 16;
     this.paddingsW = 28;
     this.paddingsH = 107;
@@ -166,6 +167,7 @@ class MSView {
     if (!this.eventsSetUp) {
       var fieldContainer = this.fieldContainer;
       var smileyButton = this.smileyButton;
+      var newGameMenu = this.newGameMenu;
       fieldContainer.addEventListener("click", function (ev) {
         var cell = ev.target;
         if (cell.className.indexOf("cell") !== -1) {
@@ -185,6 +187,13 @@ class MSView {
       smileyButton.addEventListener("mouseup", function (ev) {
         smileyButton.className = "panel smiley";
         config.smileyClick();
+      });
+      newGameMenu.addEventListener("mousedown", function (ev) {
+        newGameMenu.className = "down";
+      });
+      newGameMenu.addEventListener("mouseup", function (ev) {
+        newGameMenu.className = "";
+        config.newGameMenuClick();
       });
     }
     this.eventsSetUp = true;
@@ -304,6 +313,7 @@ class MSController {
     this.handleCellClick = this.handleCellClick.bind(this);
     this.handleRightClick = this.handleRightClick.bind(this);
     this.handleSmileyClick = this.handleSmileyClick.bind(this);
+    this.handleNewGameMenuClick = this.handleNewGameMenuClick.bind(this);
     this.timer = null;
     this.gameStopped = true;
   }
@@ -314,7 +324,8 @@ class MSController {
     this.view.setupEventListeners({
       click: this.handleCellClick,
       contextmenu: this.handleRightClick,
-      smileyClick: this.handleSmileyClick
+      smileyClick: this.handleSmileyClick,
+      newGameMenuClick: this.handleNewGameMenuClick
     });
     this.view.updateBombCounter(this.numBombs);
     this.view.updateTime(0);
@@ -382,6 +393,9 @@ class MSController {
     }
   }
   handleSmileyClick() {
+    this.newGame();
+  }
+  handleNewGameMenuClick() {
     this.newGame();
   }
   userWins() {
