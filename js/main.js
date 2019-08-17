@@ -110,9 +110,9 @@ MSModel.constants = {
 //--- END MODEL
 /**
  * Minesweeper view constructor
+ * @param bombs
  * @param numRows
  * @param numCols
- * @param bombs
  * @constructor
  */
 class MSView {
