@@ -88,7 +88,7 @@ body {
 }
 
 .menu .item {
-  padding: 5px;
+  /*padding: 5px;*/
   display: inline-block;
 }
 
@@ -308,4 +308,57 @@ body {
 
 .close {
   font-weight: bolder;
+}
+
+/* DROPDOWN */
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 12px; 
+  border: none;
+  outline: none;
+  background-color: inherit;
+  margin: 0; /* Important for vertical align on mobile phones */
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* TEST: Add a red background color to navbar links on hover */
+/*.menu a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}*/
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #c0c0c0;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 5px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a white background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #fff;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
