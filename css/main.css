@@ -319,7 +319,8 @@ body {
 
 /* Dropdown button */
 .dropdown .dropbtn {
-  font-size: 12px; 
+  font-size: 12px;
+  padding: 3px 5px 4px 6px; 
   border: none;
   outline: none;
   background-color: inherit;
@@ -355,7 +356,8 @@ body {
 
 /* Add a white background color to dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: #fff;
+  background-color: darkblue;
+  color: #fff;
 }
 
 /* Show the dropdown menu on hover */

@@ -15,7 +15,33 @@
   </head>
 
   <body>
-    <div id="window" class="panel">
+    <div style="display: inline-block;">
+      <form id="difficultySelector" method="GET">
+        <fieldset>
+          <legend>Choose your difficulty level:</legend>
+          <div>
+            <input type="radio" id="difficultyBeginner"
+              name="difficulty-level" value="beginner">
+            <label for="difficultyBeginner">Beginner</label>
+        
+            <input type="radio" id="difficultyIntermediate"
+              name="difficulty-level" value="intermediate">
+            <label for="difficultyIntermediate">Intermediate</label>
+        
+            <input type="radio" id="difficultyExpert"
+              name="difficulty-level" value="expert">
+            <label for="contactChoice3">Expert</label>
+          </div>
+          <div>
+            <button type="submit" id="submitDifficulty">Launch Game</button>
+          </div>
+        </fieldset>
+      </form>
+      <pre id="log">
+      </pre>
+    </div>
+
+    <div id="window" class="panel" style="visibility: hidden;">
       <div class="inner">
         <div class="header">
           <div class="icon"></div>
@@ -39,7 +65,7 @@
             <div class="dropdown-content">
                 <a id="newGame-menu">New&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(F2)</a>
                 <hr>
-                <a id="beginner-mode" href="#">&#x2714; Beginner</a>
+                <a id="beginner-mode" href="#">Beginner</a>
                 <a id="intermediate-mode" href="#">Intermediate</a>
                 <a id="expert-mode" href="#">Expert</a>
               </div>
@@ -68,6 +94,9 @@
         </div>
       </div>
     </div>
+    <script src="js/MSModel.js"></script>
+    <script src="js/MSController.js"></script>
+    <script src="js/MSView.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
